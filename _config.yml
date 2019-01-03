@@ -1,0 +1,11 @@
+
+# html lang
+language: en
+
+# main menu navigation
+menu:
+  Home: /
+
+# scripts loaded in the end of the body
+scripts:
+- /js/attraction.js

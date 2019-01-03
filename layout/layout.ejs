@@ -1,0 +1,162 @@
+
+<%
+var pageTitle = page.title || config.subtitle || '';
+if (is_archive()) pageTitle = 'Archives';
+if (is_tag()) pageTitle = 'Tag: ' + page.tag;
+if (is_category()) pageTitle = 'Category: ' + page.category;
+if (is_month()) pageTitle += ': ' + page.month + '/' + page.year;
+if (is_year()) pageTitle += ': ' + page.year;
+pageTitle += config.title;
+%>
+
+<!DOCTYPE html>
+<html lang="<%=config.language%>">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <title><%=pageTitle%></title>
+  <style type="text/css">
+    body, html {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      user-select: none;
+      box-sizing: border-box;
+      touch-action: manipulation;
+      background-color: #f1f3f4;
+    }
+
+    a {
+      color: #000;
+      text-decoration: none;
+    }
+
+    #content-outer {
+      margin: 4% 14%;
+      padding: 4% 8%;
+      box-shadow: 0 0 3px -1px rgba(0,0,0,.3);
+      border-radius: 5px;
+      box-sizing: border-box;
+      background: #fff;
+      border-bottom: 1px solid #b5b5b5;
+    }
+
+    #content-inner {
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .recent-post-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .recent-post-item .title {
+      overflow: hidden;
+      text-overflow:ellipsis;
+      white-space: nowrap;
+    }
+
+    .recent-post-item .time {
+      color: #ccc;
+      font-size: 13px;
+      line-height: 18px;
+      min-width: 81px;
+      text-align: right;
+    }
+
+    #post img {
+      max-width: 100%;
+    }
+
+    #post h1.title {
+      text-align: center;
+      font-size: 2em;
+      margin-block-start: 0.67em;
+      margin-block-end: 0.67em;
+      line-height: 1;
+    }
+
+    #post .time {
+      text-align: center;
+      color: #ccc;
+      font-size: 14px;
+    }
+    
+    #post .content {
+      margin-top: 8%;
+    }
+
+    #post .content blockquote {
+      border-left: 3px solid #eee;
+      padding-left: 20px;
+      color: #666;
+      margin: 0;
+    }
+
+    #post .content .gutter {
+      display: none;
+    }
+
+    #post .content .code {
+      font-size: 14px;
+    }
+
+    #post .content figure {
+      padding: 0 1em;
+      background-color: #f1f3f4;
+      border: 1px solid #e0e0e0;
+      margin: 0;
+    }
+
+    #post .content figure table {
+      width: 100%;
+    }
+
+    code, kbd, pre, samp {
+      font-family: monospace, serif;
+      font-size: 1em;
+    }
+
+    @media screen and (max-width: 480px) {
+      #content-outer {
+        margin: 0;
+        padding: 2% 4%;
+        border-radius: 0;
+      }
+      
+      .recent-post-item:first-child {
+        margin-top: 32px;
+      }
+
+      .recent-post-item:last-child {
+        border-bottom: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div id="content-outer">
+  <div id="content-inner">
+    <%- body %>
+  </div>
+</div>
+
+<% if (theme.scripts !== undefined && theme.scripts.length > 0) { %>
+  <!-- scripts list from theme config.yml -->
+  <% theme.scripts.forEach(url => { %>
+    <script src="<%=url%>"></script>
+  <% }); %>
+<% } %>
+
+</body>
+</html>
