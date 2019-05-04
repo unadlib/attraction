@@ -122,6 +122,67 @@ pageTitle += config.title;
       width: 100%;
     }
 
+    .hljs {
+      display: block;
+      position: relative;
+      overflow-x: auto;
+      padding: 3em 24px 24px;
+      color: #abb2bf;
+      background: #282c34;
+      border-radius: 6px;
+    }
+
+    .hljs-window-title {
+      position: absolute;
+      left: -75px;
+      top: -1em;
+    }
+
+    .hljs-comment,.hljs-quote {
+        color: #5c6370;
+        font-style: italic;
+    }
+
+    .hljs-doctag,.hljs-keyword,.hljs-formula {
+        color: #c678dd;
+    }
+
+    .hljs-section,.hljs-name,.hljs-selector-tag,.hljs-deletion,.hljs-subst {
+        color: #e06c75;
+    }
+
+    .hljs-literal {
+        color: #56b6c2;
+    }
+
+    .hljs-string,.hljs-regexp,.hljs-addition,.hljs-attribute,.hljs-meta-string {
+        color: #98c379;
+    }
+
+    .hljs-built_in,.hljs-class .hljs-title {
+        color: #e6c07b;
+    }
+
+    .hljs-attr,.hljs-variable,.hljs-template-variable,.hljs-type,.hljs-selector-class,.hljs-selector-attr,.hljs-selector-pseudo,.hljs-number {
+        color: #d19a66;
+    }
+
+    .hljs-symbol,.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-title {
+        color: #61aeee;
+    }
+
+    .hljs-emphasis {
+        font-style: italic;
+    }
+
+    .hljs-strong {
+        font-weight: bold;
+    }
+
+    .hljs-link {
+        text-decoration: underline;
+    }
+
     @media screen and (max-width: 1024px)  {
       #content-outer {
         margin: 2% 7%;
@@ -167,7 +228,23 @@ pageTitle += config.title;
   <% theme.scripts.forEach(url => { %>
     <script src="<%=url%>"></script>
   <% }); %>
+  <script>
+    hljs.initHighlightingOnLoad();
+    console.log(document.getElementsByClassName('hljs'), '====')
+    document.addEventListener('DOMContentLoaded', (event) => {
+      setTimeout(() => {
+        document.querySelectorAll('.hljs').forEach((block) => {
+          const firstChild = block.firstChild;
+          const element = document.createElement('span');
+          element.setAttribute('class', 'hljs-window-title')
+          element.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" width="54" height="14" viewBox="0 0 54 14"><g fill="none" fill-rule="evenodd" transform="translate(1 1)"><circle cx="6" cy="6" r="6" fill="#FF5F56" stroke="#E0443E" stroke-width=".5"></circle><circle cx="26" cy="6" r="6" fill="#FFBD2E" stroke="#DEA123" stroke-width=".5"></circle><circle cx="46" cy="6" r="6" fill="#27C93F" stroke="#1AAB29" stroke-width=".5"></circle></g></svg>
+          `;
+          block.insertBefore(element, firstChild);
+        });
+      });
+    });
+  </script>
 <% } %>
-
 </body>
 </html>
