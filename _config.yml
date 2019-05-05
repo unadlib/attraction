@@ -9,7 +9,10 @@ menu:
 highlight:
   enable: false
 
-# scripts loaded in the end of the body
 scripts:
 - /js/attraction.js
-- /js/highlight.min.js
+- https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.46.0/codemirror.min.js
+
+styles:
+- https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.46.0/codemirror.min.css
+- https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.46.0/theme/seti.min.css
